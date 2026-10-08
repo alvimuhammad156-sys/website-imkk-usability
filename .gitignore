@@ -1,0 +1,23 @@
+# Local secrets and environment files
+.env
+.env.*
+
+# Vercel local project metadata
+.vercel
+
+# Dependencies and build outputs (not used by this static project)
+node_modules/
+dist/
+build/
+
+# Temporary files and logs
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini

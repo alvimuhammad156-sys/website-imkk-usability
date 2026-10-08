@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080d18">
+  <meta name="description" content="Interactive Usability Engineering Learning Experience — materi akademik, evaluasi usability, dan interaksi bersama guide 3D KIRA.">
+  <title>Usability Engineering — IMKK Learning Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="learning.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js"
+      }
+    }
+  </script>
+  <script type="module" src="js/robot3d.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav-wrap" aria-label="Navigasi utama">
+      <a class="brand" href="#beranda" aria-label="IMKK beranda">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span class="brand-name">IMKK<span class="brand-period">.</span></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Buka menu"><span></span><span></span></button>
+      <div class="nav-links" id="main-nav">
+        <a class="nav-link active" href="#beranda">Beranda</a>
+        <a class="nav-link" href="#materi">Materi</a>
+        <div class="quick-nav" id="quick-nav">
+          <button class="quick-nav-toggle" type="button" aria-expanded="false" aria-controls="quick-nav-menu" aria-label="Buka daftar materi">☰ Materi</button>
+          <nav class="quick-nav-menu" id="quick-nav-menu" aria-label="Daftar materi cepat" hidden>
+            <a href="#definisi" data-quick-topic="definisi">01 — Apa itu Usability?</a>
+            <a href="#pentingnya" data-quick-topic="pentingnya">02 — Mengapa Usability Penting?</a>
+            <a href="#atribut" data-quick-topic="atribut">03 — Lima Atribut Usability</a>
+            <a href="#langkah" data-quick-topic="langkah">04 — Usability Engineering</a>
+            <a href="#pengukuran" data-quick-topic="pengukuran">05 — Metode Pengukuran</a>
+            <a href="#siklus" data-quick-topic="siklus">06 — Usability Lifecycle</a>
+            <a href="#experience" data-quick-topic="experience">07 — Experience Design</a>
+            <a href="#ringkasan" data-quick-topic="ringkasan">08 — Ringkasan</a>
+          </nav>
+        </div>
+        <a class="nav-link" href="#experience">Eksplorasi</a>
+        <a class="nav-link" href="#referensi">Referensi</a>
+        <button class="high-contrast-toggle" id="high-contrast-toggle" type="button" aria-pressed="false" aria-label="High Contrast — optimalkan tampilan untuk proyektor" title="High Contrast — optimalkan tampilan untuk proyektor">◐ High Contrast</button>
+        <a class="nav-cta" href="#definisi" data-presentation-start aria-label="Mulai mode presentasi">🎤 Presentasi <span aria-hidden="true">↘</span></a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="beranda">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <p class="ue-hero-tag">INTERAKSI MANUSIA DAN KOMPUTER <span>·</span> MEDIA PRESENTASI</p>
+        <div class="eyebrow"><span class="eyebrow-dot"></span> Materi presentasi · belajar mandiri</div>
+        <h1>Interaksi yang<br><span class="accent-text">mudah digunakan.</span></h1>
+        <p class="hero-description">Pelajari Usability Engineering melalui definisi, atribut Nielsen, proses desain, metode evaluasi, dan lifecycle. Satu jalur untuk presentasi kelas maupun belajar mandiri.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#definisi" data-presentation-start>🎤 Mulai presentasi <span aria-hidden="true">↘</span></a>
+          <a class="button button-quiet" href="#materi">Jelajahi materi <span aria-hidden="true">↘</span></a>
+        </div>
+        <div class="hero-note"><span class="eyebrow-dot" aria-hidden="true"></span><span>Enam bagian · Usability Engineering</span></div>
+      </div>
+      <div class="hero-visual guide-widget" id="guide-widget">
+        <div class="visual-orbit orbit-one" aria-hidden="true"></div>
+        <div class="visual-orbit orbit-two" aria-hidden="true"></div>
+        <div class="visual-glow" aria-hidden="true"></div>
+        <div class="robot-stage" id="imkk-robot-container" role="button" tabindex="0" aria-haspopup="dialog" aria-expanded="false" aria-controls="guide-bubble" aria-label="KIRA, buka panduan singkat bagian ini">
+          <span class="robot-loading-fallback">KIRA <span>·</span> guide belajar usability</span>
+        </div>
+        <div class="guide-bubble" id="guide-bubble" role="dialog" aria-label="Bantuan singkat KIRA" hidden>
+          <p class="guide-bubble-message" id="guide-message" role="status" aria-live="polite" aria-atomic="true"></p>
+          <a class="guide-bubble-explore" href="#materi" data-kira-explore hidden>Mulai Eksplorasi <span aria-hidden="true">→</span></a>
+          <div class="guide-bubble-actions" data-kira-actions hidden>
+            <button type="button" data-kira-explain>Jelaskan bagian ini</button>
+            <button type="button" data-kira-example>Beri contoh</button>
+          </div>
+          <button class="guide-bubble-close" type="button" data-kira-close aria-label="Tutup pesan KIRA">×</button>
+        </div>
+        <div class="visual-label label-top"><span class="label-spark">✳</span><span>LEARN<br>BY DESIGN</span></div>
+        <div class="visual-label label-bottom"><span class="label-pulse"></span><span>HUMAN<br>CENTERED</span></div>
+        <div class="visual-caption"><span class="caption-line"></span> KIRA · KLIK UNTUK RINGKASAN</div>
+      </div>
+      <div class="hero-bottom"><span>01 — BERANDA</span><span class="scroll-hint">GULIR UNTUK MENJELAJAH <span aria-hidden="true">↓</span></span><span>IMKK · MATERI IMK</span></div>
+    </section>
+
+    <section class="learning-intro section-shell" id="materi">
+      <div class="section-topline"><span class="section-index">00</span><span class="section-kicker">LEARNING PATH</span><span class="section-rule"></span><span class="section-side-note">EST. 12–15 MIN</span></div>
+      <div class="learning-intro-row"><div><p class="overline">KONSEP → EVALUASI → ITERASI</p><h2>Belajar tentang<br><span>kemudahan penggunaan.</span></h2></div><p class="learning-intro-copy">Ikuti urutan materi atau lompat ke bagian yang diperlukan. Setiap pilihan memberi respons dari KIRA, guide robot 3D di halaman ini.</p></div>
+      <div class="lesson-progress" aria-label="Progress posisi dalam materi"><div class="lesson-progress-copy"><span id="progress-label">00 / 06</span><span id="progress-title">Siap memulai</span><span id="progress-feedback" aria-live="polite">MATERI SIAP DIJELAJAHI</span></div><div class="progress-track" role="progressbar" aria-label="Posisi bagian aktif dalam materi" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0"><span id="progress-fill"></span></div></div>
+      <nav class="course-nav" aria-label="Daftar materi"><a href="#definisi">01 Definisi</a><a href="#pentingnya">02 Pentingnya</a><a href="#atribut">03 Atribut</a><a href="#langkah">04 Langkah</a><a href="#pengukuran">05 Pengukuran</a><a href="#siklus">06 Lifecycle</a><a href="#experience">B Experience Design</a><a href="#ringkasan">C Ringkasan</a></nav>
+    </section>
+
+    <section class="content-section section-shell" id="definisi" data-lesson="definisi" aria-labelledby="definition-title">
+      <div class="section-topline"><span class="section-index">01</span><span class="section-kicker">FOUNDATIONS</span><span class="section-rule"></span><span class="section-side-note">01 / 06</span></div>
+      <div class="section-heading"><div><p class="overline">APA ITU USABILITY?</p><h2 id="definition-title">Keberhasilan ditentukan<br><span>oleh konteks penggunaan.</span></h2></div><p class="section-lede">Usability terlihat ketika pengguna tertentu mencapai tujuan tertentu dalam konteks tertentu; ia bukan sifat yang terlepas dari pengguna dan situasi.</p></div>
+      <blockquote class="definition-quote"><span class="quote-mark" aria-hidden="true">“</span><div><p>Sejauh mana suatu produk dapat digunakan oleh pengguna tertentu untuk mencapai tujuan tertentu dengan <strong>efektivitas, efisiensi, dan kepuasan</strong> dalam konteks penggunaan tertentu.</p><cite>ISO 9241-11:2018 · terjemahan ringkas</cite></div><a class="source-mark" href="https://www.iso.org/standard/63500.html" target="_blank" rel="noreferrer" aria-label="Buka halaman ISO 9241-11:2018">ISO ↗</a></blockquote>
+      <div class="concept-grid"><article class="concept-card"><span class="concept-number">01</span><span class="concept-icon" aria-hidden="true">◎</span><h3>Efektivitas</h3><p>Apakah tugas selesai secara akurat dan lengkap?</p><span class="concept-foot">HASIL YANG TEPAT</span></article><article class="concept-card"><span class="concept-number">02</span><span class="concept-icon" aria-hidden="true">↗</span><h3>Efisiensi</h3><p>Seberapa banyak waktu dan usaha yang dibutuhkan?</p><span class="concept-foot">SUMBER DAYA YANG WAJAR</span></article><article class="concept-card"><span class="concept-number">03</span><span class="concept-icon" aria-hidden="true">✳</span><h3>Kepuasan</h3><p>Apakah pengalaman terasa nyaman dan dapat diterima?</p><span class="concept-foot">PENGALAMAN PENGGUNA</span></article></div>
+      <div class="definition-lens"><div class="lens-heading"><span class="lens-icon" aria-hidden="true">N</span><div><p class="overline">LENS JAKOB NIELSEN</p><h3>Usability adalah kualitas kemudahan penggunaan.</h3></div></div><p>Nielsen menjelaskan usability melalui lima atribut: learnability, efficiency, memorability, errors, dan satisfaction. Ia membedakan <em>usability</em> (seberapa baik orang dapat menggunakan fungsi yang tersedia) dari <em>utility</em> (apakah fungsi yang dibutuhkan tersedia).</p><div class="formula"><span>USEFULNESS</span><span class="formula-equals">=</span><span>UTILITY</span><span class="formula-plus">+</span><span>USABILITY</span></div><a class="source-link" href="https://www.nngroup.com/articles/usability-101-introduction-to-usability/" target="_blank" rel="noreferrer">Baca ringkasan Nielsen Norman Group <span aria-hidden="true">↗</span></a></div>
+      <button class="guide-link" type="button" data-guide-section="definisi">Lihat ringkasan KIRA <span aria-hidden="true">↗</span></button>
+    </section>
+
+    <section class="content-section section-shell" id="pentingnya" data-lesson="pentingnya" aria-labelledby="importance-title">
+      <div class="section-topline"><span class="section-index">02</span><span class="section-kicker">WHY IT MATTERS</span><span class="section-rule"></span><span class="section-side-note">02 / 06</span></div><div class="section-heading"><div><p class="overline">MENGAPA USABILITY PENTING?</p><h2 id="importance-title">Lebih sedikit hambatan.<br><span>Lebih banyak hasil.</span></h2></div><p class="section-lede">Pengalaman yang mudah digunakan membantu orang mencapai tujuan dan membantu organisasi serta produk memenuhi tujuannya.</p></div>
+      <div class="stakeholder-grid"><article class="stakeholder-card"><span class="stakeholder-tag">01 / USER</span><h3>Untuk pengguna</h3><ul><li>Tugas selesai lebih cepat</li><li>Lebih sedikit kesalahan</li><li>Lebih sedikit frustrasi</li><li>Kurva belajar lebih landai</li></ul></article><article class="stakeholder-card stakeholder-featured"><span class="stakeholder-tag">02 / ORGANIZATION</span><h3>Untuk organisasi</h3><ul><li>Biaya training dan support dapat berkurang</li><li>Produktivitas dapat meningkat</li><li>Konversi dapat meningkat</li><li>Biaya perbaikan akhir dapat berkurang</li></ul></article><article class="stakeholder-card"><span class="stakeholder-tag">03 / PRODUCT</span><h3>Untuk produk</h3><ul><li>Loyalitas dan reputasi dapat meningkat</li><li>Keunggulan kompetitif</li><li>Risiko produk ditinggalkan lebih kecil</li></ul></article></div>
+      <aside class="insight-callout"><span class="insight-icon" aria-hidden="true">↗</span><p><strong>Perbaiki lebih awal.</strong> Menemukan masalah usability sebelum rilis biasanya membuat perbaikannya lebih ringan daripada menanganinya setelah produk dipakai luas.</p><button type="button" data-guide-section="pentingnya">Lihat ringkasan KIRA <span aria-hidden="true">↗</span></button></aside>
+    </section>
+
+    <section class="content-section section-shell" id="atribut" data-lesson="atribut" aria-labelledby="attributes-title">
+      <div class="section-topline"><span class="section-index">03</span><span class="section-kicker">NIELSEN'S MODEL</span><span class="section-rule"></span><span class="section-side-note">02 MODE PANDANG</span></div><div class="section-heading"><div><p class="overline">LIMA ATRIBUT USABILITY</p><h2 id="attributes-title">Apa yang membuat<br><span>sistem mudah digunakan?</span></h2></div><p class="section-lede">Pilih atribut untuk melihat pertanyaan evaluasi dan mendengar ringkasan dari KIRA.</p></div>
+      <div class="attribute-layout"><div class="attribute-grid" role="group" aria-label="Pilih atribut usability"><button class="attribute-card is-selected" type="button" data-attribute="learnability" aria-pressed="true"><span class="attribute-index">01</span><span class="attribute-symbol" aria-hidden="true">⌁</span><strong>Learnability</strong><span class="attribute-short">Mudah dipelajari</span><span class="attribute-arrow" aria-hidden="true">↗</span></button><button class="attribute-card" type="button" data-attribute="efficiency" aria-pressed="false"><span class="attribute-index">02</span><span class="attribute-symbol" aria-hidden="true">⏱</span><strong>Efficiency</strong><span class="attribute-short">Cepat setelah mahir</span><span class="attribute-arrow" aria-hidden="true">↗</span></button><button class="attribute-card" type="button" data-attribute="memorability" aria-pressed="false"><span class="attribute-index">03</span><span class="attribute-symbol" aria-hidden="true">↺</span><strong>Memorability</strong><span class="attribute-short">Mudah diingat kembali</span><span class="attribute-arrow" aria-hidden="true">↗</span></button><button class="attribute-card" type="button" data-attribute="errors" aria-pressed="false"><span class="attribute-index">04</span><span class="attribute-symbol" aria-hidden="true">◇</span><strong>Errors</strong><span class="attribute-short">Sedikit & dapat dipulihkan</span><span class="attribute-arrow" aria-hidden="true">↗</span></button><button class="attribute-card" type="button" data-attribute="satisfaction" aria-pressed="false"><span class="attribute-index">05</span><span class="attribute-symbol" aria-hidden="true">✳</span><strong>Satisfaction</strong><span class="attribute-short">Menyenangkan digunakan</span><span class="attribute-arrow" aria-hidden="true">↗</span></button></div>
+      <div class="attribute-detail" id="attribute-detail" aria-live="polite"><span class="detail-label">ATRIBUT TERPILIH · 01</span><h3>Learnability</h3><p class="attribute-summary">Seberapa cepat pengguna baru dapat menyelesaikan tugas dasar saat pertama kali memakai sistem?</p><div class="detail-question"><span aria-hidden="true">?</span><span>Amati keberhasilan dan waktu tugas pada penggunaan pertama.</span></div><button class="detail-guide" type="button" data-guide-section="atribut">Lihat ringkasan atribut <span aria-hidden="true">↗</span></button></div></div>
+      <div class="comparison-strip"><div><span class="comparison-label">ISO 9241-11</span><strong>3 komponen dalam konteks penggunaan</strong><p>Efektivitas · Efisiensi · Kepuasan</p></div><span class="comparison-divider" aria-hidden="true"></span><div><span class="comparison-label">JAKOB NIELSEN</span><strong>5 atribut kualitas usability</strong><p>Learnability · Efficiency · Memorability · Errors · Satisfaction</p></div></div>
+    </section>
+
+    <section class="content-section section-shell" id="langkah" data-lesson="langkah" aria-labelledby="steps-title">
+      <div class="section-topline"><span class="section-index">04</span><span class="section-kicker">DESIGN PROCESS</span><span class="section-rule"></span><span class="section-side-note">ITERATIVE BY DESIGN</span></div><div class="section-heading"><div><p class="overline">LANGKAH USABILITY ENGINEERING</p><h2 id="steps-title">Pahami. Rancang.<br><span>Evaluasi. Ulangi.</span></h2></div><p class="section-lede">Empat aktivitas inti human-centred design membantu tim tetap berangkat dari pengguna dan menguji keputusan desain.</p></div>
+      <div class="stepper-layout"><div class="stepper-track" role="group" aria-label="Pilih langkah usability engineering"><button class="step-card is-selected" type="button" data-step="0" aria-pressed="true"><span>01</span><strong>Pahami konteks penggunaan</strong><span class="step-detail-short">Pengguna · tugas · lingkungan</span><span class="step-chevron" aria-hidden="true">↘</span></button><button class="step-card" type="button" data-step="1" aria-pressed="false"><span>02</span><strong>Tentukan kebutuhan</strong><span class="step-detail-short">Kebutuhan dan tujuan pengguna</span><span class="step-chevron" aria-hidden="true">↘</span></button><button class="step-card" type="button" data-step="2" aria-pressed="false"><span>03</span><strong>Rancang solusi</strong><span class="step-detail-short">Solusi yang menjawab kebutuhan</span><span class="step-chevron" aria-hidden="true">↘</span></button><button class="step-card" type="button" data-step="3" aria-pressed="false"><span>04</span><strong>Evaluasi desain</strong><span class="step-detail-short">Uji terhadap kebutuhan dan tujuan</span><span class="step-chevron" aria-hidden="true">↘</span></button></div><div class="step-detail-panel" aria-live="polite"><span class="detail-label" id="step-label">LANGKAH 01</span><h3 id="step-title">Pahami konteks penggunaan</h3><p id="step-copy">Kenali siapa pengguna, tujuan, tugas, sumber daya, dan lingkungan teknis, fisik, sosial, budaya, serta organisasi tempat penggunaan terjadi.</p><div class="iteration-loop"><span class="loop-icon" aria-hidden="true">↻</span><span>Evaluasi memberi masukan untuk memperbaiki kebutuhan dan desain berikutnya.</span></div></div></div><p class="process-note"><span class="status-live" aria-hidden="true"></span> PROSES USABILITY BUKAN SEKALI JALAN — IA ITERATIF.</p>
+    </section>
+
+    <section class="content-section section-shell" id="pengukuran" data-lesson="pengukuran" aria-labelledby="measurement-title">
+      <div class="section-topline"><span class="section-index">05</span><span class="section-kicker">EVALUATION TOOLKIT</span><span class="section-rule"></span><span class="section-side-note">PILIH METODE SESUAI PERTANYAAN</span></div><div class="section-heading"><div><p class="overline">METODE PENGUKURAN USABILITY</p><h2 id="measurement-title">Gabungkan bukti.<br><span>Pahami pengalaman.</span></h2></div><p class="section-lede">Metode berbeda menjawab pertanyaan berbeda. Pilih tab untuk melihat tujuan, cara, dan batas praktisnya.</p></div>
+      <div class="method-tabs" role="tablist" aria-label="Metode pengukuran usability"><button id="tab-testing" class="method-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="panel-testing" data-method="testing">Usability Testing</button><button id="tab-heuristic" class="method-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-heuristic" data-method="heuristic" tabindex="-1">Heuristic Evaluation</button><button id="tab-walkthrough" class="method-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-walkthrough" data-method="walkthrough" tabindex="-1">Cognitive Walkthrough</button><button id="tab-sus" class="method-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-sus" data-method="sus" tabindex="-1">SUS</button><button id="tab-qualitative" class="method-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-qualitative" data-method="qualitative" tabindex="-1">Wawancara & Observasi</button></div>
+      <div class="method-panel" id="panel-testing" role="tabpanel" aria-labelledby="tab-testing" tabindex="0"><div class="method-panel-copy"><span class="method-number">METHOD / 01</span><h3>Amati pengguna nyata saat mengerjakan tugas.</h3><p>Berikan tugas yang mewakili tujuan pengguna, lalu amati apa yang berhasil, waktu yang dibutuhkan, kesalahan, dan alasan di balik perilakunya.</p><div class="metric-list"><span>Success rate</span><span>Time on task</span><span>Error</span><span>Observasi</span></div></div><aside class="method-note"><span class="note-eyebrow">PRAKTIK ITERATIF</span><strong>Mulai kecil, pelajari, lalu uji lagi.</strong><p>Sekitar lima peserta dapat menjadi pendekatan praktis untuk satu putaran studi kualitatif pada satu kelompok yang relatif serupa. Ini bukan aturan universal atau sampel statistik; putaran kecil berulang sering lebih berguna daripada satu studi besar.</p><a class="source-link" href="https://www.nngroup.com/articles/how-many-test-users/" target="_blank" rel="noreferrer">NN/g · How Many Test Users? ↗</a></aside></div>
+      <div class="method-panel" id="panel-heuristic" role="tabpanel" aria-labelledby="tab-heuristic" tabindex="0" hidden><div class="method-panel-copy"><span class="method-number">METHOD / 02</span><h3>Pakar memeriksa antarmuka dengan heuristik.</h3><p>Evaluator meninjau alur dan antarmuka secara sistematis, mencatat masalah, prinsip yang terdampak, serta severity 0–4 untuk membantu prioritas.</p><div class="metric-list"><span>Visibility of status</span><span>Consistency</span><span>Error prevention</span><span>Severity 0–4</span></div></div><aside class="method-note"><span class="note-eyebrow">10 HEURISTIK NIELSEN</span><ol class="heuristic-list"><li>Visibility of system status</li><li>Match with the real world</li><li>User control and freedom</li><li>Consistency and standards</li><li>Error prevention</li><li>Recognition rather than recall</li><li>Flexibility and efficiency</li><li>Aesthetic, minimalist design</li><li>Help users recover from errors</li><li>Help and documentation</li></ol><a class="source-link" href="https://www.nngroup.com/articles/ten-usability-heuristics/" target="_blank" rel="noreferrer">Lihat heuristik NN/g ↗</a></aside></div>
+      <div class="method-panel" id="panel-walkthrough" role="tabpanel" aria-labelledby="tab-walkthrough" tabindex="0" hidden><div class="method-panel-copy"><span class="method-number">METHOD / 03</span><h3>Telusuri tugas dari sudut pandang pengguna baru.</h3><p>Evaluator berjalan melalui langkah tugas untuk menilai apakah tindakan tepat mudah ditemukan, dipahami, dan menghasilkan feedback yang jelas.</p><div class="metric-list"><span>Tujuan pengguna</span><span>Aksi terlihat</span><span>Feedback jelas</span></div></div><aside class="method-note"><span class="note-eyebrow">PERTANYAAN KUNCI</span><ul class="question-list"><li>Apakah pengguna tahu apa yang harus dilakukan?</li><li>Apakah aksi yang dibutuhkan terlihat?</li><li>Apakah aksi itu cocok dengan tujuan?</li><li>Apakah feedback menunjukkan kemajuan?</li></ul></aside></div>
+      <div class="method-panel" id="panel-sus" role="tabpanel" aria-labelledby="tab-sus" tabindex="0" hidden><div class="method-panel-copy"><span class="method-number">METHOD / 04 · BROOKE, 1996</span><h3>System Usability Scale (SUS)</h3><p>Kuesioner 10 pernyataan dengan respons Likert 1–5. Setelah pembalikan dan penjumlahan sesuai aturan SUS, skor dikalikan 2,5 untuk menghasilkan 0–100.</p><div class="metric-list"><span>10 pernyataan</span><span>Likert 1–5</span><span>Skor 0–100</span></div></div><aside class="method-note sus-score"><span class="note-eyebrow">CARA MEMBACA</span><strong class="score-number">≈ 68</strong><p>Sering dipakai sebagai benchmark rata-rata dari kumpulan studi, bukan batas lulus universal. Skor SUS bukan persentase dan bukan diagnosis tunggal.</p><a class="source-link" href="https://hci-studies.org/methods-and-measures/downloads/SUS_Brooke1996.pdf" target="_blank" rel="noreferrer">Brooke · SUS (1996) ↗</a></aside></div>
+      <div class="method-panel" id="panel-qualitative" role="tabpanel" aria-labelledby="tab-qualitative" tabindex="0" hidden><div class="method-panel-copy"><span class="method-number">METHOD / 05</span><h3>Dengarkan cerita, lihat konteks, amati perilaku.</h3><p>Wawancara dan observasi membantu menggali kebutuhan, konteks, persepsi, strategi, serta hambatan yang sulit dijelaskan lewat angka saja.</p><div class="metric-list"><span>Kebutuhan</span><span>Konteks</span><span>Persepsi</span><span>Perilaku</span></div></div><aside class="method-note"><span class="note-eyebrow">TRIANGULASI BUKTI</span><strong>Gabungkan angka dengan alasan di baliknya.</strong><p>Angka menunjukkan pola; observasi dan percakapan membantu memahami mengapa pola itu terjadi.</p></aside></div>
+      <aside class="severity-scale"><span class="note-eyebrow">SEVERITY · PRIORITAS MASALAH</span><span><b>0</b> bukan masalah</span><span><b>1</b> kosmetik</span><span><b>2</b> minor</span><span><b>3</b> mayor</span><span><b>4</b> kritis sebelum rilis</span><a href="https://www.nngroup.com/articles/how-to-rate-the-severity-of-usability-problems/" target="_blank" rel="noreferrer">Kriteria severity NN/g ↗</a></aside>
+    </section>
+
+    <section class="content-section section-shell" id="siklus" data-lesson="siklus" aria-labelledby="lifecycle-title">
+      <div class="section-topline"><span class="section-index">06</span><span class="section-kicker">PRODUCT LIFECYCLE</span><span class="section-rule"></span><span class="section-side-note">SEBELUM · SELAMA · SESUDAH</span></div><div class="section-heading"><div><p class="overline">USABILITY ENGINEERING LIFECYCLE</p><h2 id="lifecycle-title">Rancang untuk manusia<br><span>di seluruh siklus produk.</span></h2></div><p class="section-lede">Aktivitas usability dimulai sebelum antarmuka selesai dirancang, berlanjut selama desain, lalu mengumpulkan bukti setelah produk digunakan.</p></div>
+      <div class="lifecycle-timeline" role="group" aria-label="Pilih tahap usability engineering lifecycle"><button class="lifecycle-phase is-selected" type="button" data-phase="0" aria-pressed="true"><span class="phase-tag">FASE 01 · BEFORE DESIGN</span><span class="phase-marker" aria-hidden="true">01</span><strong>Sebelum desain</strong><span class="phase-activities">Know the User · Competitive Analysis · Set Usability Goals</span><span class="phase-summary">Kenali pengguna dan tetapkan arah sebelum memilih solusi.</span></button><button class="lifecycle-phase" type="button" data-phase="1" aria-pressed="false"><span class="phase-tag">FASE 02 · DURING DESIGN</span><span class="phase-marker" aria-hidden="true">02</span><strong>Selama desain</strong><span class="phase-activities">Parallel Design · Participatory Design · Coordinated Design · Guidelines & Heuristic Analysis · Prototyping · Empirical Testing · Iterative Design</span><span class="phase-summary">Bangun dan uji alternatif; gunakan temuan untuk iterasi.</span></button><button class="lifecycle-phase" type="button" data-phase="2" aria-pressed="false"><span class="phase-tag">FASE 03 · AFTER RELEASE</span><span class="phase-marker" aria-hidden="true">03</span><strong>Setelah rilis</strong><span class="phase-activities">Collect Feedback from Field Use</span><span class="phase-summary">Pelajari penggunaan nyata untuk menentukan perbaikan berikutnya.</span></button></div>
+      <div class="lifecycle-detail" aria-live="polite"><span class="detail-label" id="phase-label">FASE 01 · SEBELUM DESAIN</span><p id="phase-detail">Sebelum desain, pahami pengguna dan lingkungan mereka, pelajari produk pembanding, lalu tetapkan tujuan usability yang dapat dievaluasi.</p><span class="lifecycle-loop">↶ FEEDBACK LAPANGAN KEMBALI KE DESAIN</span></div><button class="guide-link" type="button" data-guide-section="siklus">Lihat ringkasan siklus <span aria-hidden="true">↗</span></button>
+    </section>
+
+    <section class="experience-section section-shell" id="experience" aria-labelledby="experience-title">
+      <div class="section-topline"><span class="section-index">B</span><span class="section-kicker">EXPERIENCE DESIGN</span><span class="section-rule"></span><span class="section-side-note">BELAJAR DARI DESAIN INI</span></div><div class="section-heading"><div><p class="overline">DARI MATERI MENJADI PENGALAMAN</p><h2 id="experience-title">Situs ini juga<br><span>sebuah studi usability.</span></h2></div><p class="section-lede">Konten akademik menjadi lebih mudah dijelajahi saat visual, interaksi, dan animasi mendukung tujuan belajar—bukan bersaing dengannya.</p></div>
+      <div class="experience-flow" aria-label="Alur desain pengalaman pembelajaran"><span>MATERI</span><span aria-hidden="true">↓</span><span>INFORMASI APA?</span><span aria-hidden="true">↓</span><span>BENTUK VISUAL APA?</span><span aria-hidden="true">↓</span><span>INTERAKSI APA?</span><span aria-hidden="true">↓</span><span>ANIMASI PERLU ATAU TIDAK?</span></div>
+      <div class="mapping-table" role="table" aria-label="Pemetaan materi ke bentuk visual dan interaksi"><div class="mapping-header" role="row"><span role="columnheader">MATERI</span><span role="columnheader">INFORMASI → VISUAL</span><span role="columnheader">INTERAKSI</span><span role="columnheader">ANIMASI</span></div><div class="mapping-row" role="row"><strong role="cell">Definisi</strong><span role="cell">Kutipan ISO + 3 komponen → kutipan besar dan 3 kartu</span><span role="cell">Baca, buka referensi</span><span role="cell">Fade-in ringan</span></div><div class="mapping-row" role="row"><strong role="cell">Pentingnya</strong><span role="cell">Manfaat bagi pengguna, organisasi, produk → 3 kartu</span><span role="cell">Baca, tanya guide</span><span role="cell">Tanpa gerak berlebihan</span></div><div class="mapping-row" role="row"><strong role="cell">Atribut</strong><span role="cell">5 atribut → kartu bernomor</span><span role="cell">Klik untuk membuka detail</span><span role="cell">Hover dan active state</span></div><div class="mapping-row" role="row"><strong role="cell">Langkah</strong><span role="cell">4 aktivitas dan loop → stepper</span><span role="cell">Pilih langkah</span><span role="cell">Transisi panel singkat</span></div><div class="mapping-row" role="row"><strong role="cell">Pengukuran</strong><span role="cell">Metode, kegunaan, ukuran → tab</span><span role="cell">Pilih metode</span><span role="cell">Transisi panel</span></div><div class="mapping-row" role="row"><strong role="cell">Lifecycle</strong><span role="cell">Tahap dalam 3 fase → timeline</span><span role="cell">Klik fase</span><span role="cell">Marker aktif</span></div></div>
+      <div class="motion-principle"><span class="motion-icon" aria-hidden="true">◌</span><p><strong>Animasi harus punya alasan.</strong> Gerak memberi feedback, menunjukkan perubahan state, dan membantu orientasi. Preferensi reduced motion dihormati.</p></div><div class="guide-complete"><span class="complete-mark" aria-hidden="true">✓</span><div><p class="overline">LEARNING PATH COMPLETE</p><h3>Materi selesai. Kini lihat situs ini dengan mata usability.</h3><p>Apakah labelnya jelas? Apakah feedback terlihat? Apa yang akan kamu uji berikutnya?</p></div><button type="button" data-guide-section="experience">Lihat ringkasan dari KIRA <span aria-hidden="true">↗</span></button></div>
+    </section>
+
+    <section class="good-bad-section section-shell" id="demo-feedback" aria-labelledby="demo-feedback-title">
+  <div class="section-topline"><span class="section-index">UX</span><span class="section-kicker">DEMO INTERAKSI</span><span class="section-rule"></span><span class="section-side-note">VISIBILITY OF SYSTEM STATUS</span></div>
+  <div class="section-heading"><div><p class="overline">GOOD UI VS BAD UI</p><h2 id="demo-feedback-title">Tindakan perlu<br><span>memberi feedback.</span></h2></div><p class="section-lede">Bandingkan respons setelah menekan tombol Simpan. Simulasi ini hanya berjalan di halaman—tidak mengirim atau mengubah data.</p></div>
+  <div class="demo-principles" aria-label="Prinsip yang ditunjukkan"><span>Visibility of System Status</span><span>Feedback</span><span>User Control</span></div>
+  <div class="demo-ui-grid">
+    <article class="demo-ui-card demo-ui-bad"><span class="demo-state-label">BAD UI · TANPA FEEDBACK</span><p>Pengguna tidak mendapatkan informasi mengenai hasil tindakan.</p><button type="button" data-demo-no-feedback>Simpan</button><span class="demo-outcome-note">Setelah klik, tidak ada konfirmasi.</span></article>
+    <article class="demo-ui-card demo-ui-good"><span class="demo-state-label">GOOD UI · DENGAN FEEDBACK</span><p>Sistem memberikan feedback setelah pengguna melakukan tindakan.</p><button type="button" data-demo-save>Simpan</button><p class="demo-save-status" id="demo-save-status" role="status" aria-live="polite" hidden>✓ Data berhasil disimpan</p></article>
+  </div>
+</section>
+<section class="glossary-section section-shell" id="glossary" aria-labelledby="glossary-title">
+  <div class="section-topline"><span class="section-index">G</span><span class="section-kicker">ISTILAH PENTING</span><span class="section-rule"></span><span class="section-side-note">GLOSSARY</span></div>
+  <div class="section-heading"><div><p class="overline">KAMUS SINGKAT</p><h2 id="glossary-title">Istilah yang<br><span>perlu diingat.</span></h2></div><p class="section-lede">Pengingat ringkas istilah yang digunakan sepanjang materi.</p></div>
+  <dl class="glossary-grid">
+    <div><dt>Usability</dt><dd>Kemudahan suatu sistem digunakan untuk mencapai tujuan tertentu.</dd></div>
+    <div><dt>Learnability</dt><dd>Kemudahan pengguna mempelajari cara menggunakan sistem.</dd></div>
+    <div><dt>Efficiency</dt><dd>Seberapa efisien pengguna menyelesaikan tugas.</dd></div>
+    <div><dt>Feedback</dt><dd>Respons sistem terhadap tindakan pengguna.</dd></div>
+    <div><dt>Affordance</dt><dd>Petunjuk mengenai kemungkinan cara menggunakan suatu elemen.</dd></div>
+    <div><dt>Heuristic Evaluation</dt><dd>Evaluasi usability berdasarkan prinsip-prinsip heuristik.</dd></div>
+    <div><dt>SUS</dt><dd>System Usability Scale: 10 pernyataan dengan skala Likert untuk mengukur persepsi usability.</dd></div>
+  </dl>
+</section>
+    <section class="references-section section-shell" id="referensi" aria-labelledby="references-title"><div class="section-topline"><span class="section-index">R</span><span class="section-kicker">REFERENSI PILIHAN</span><span class="section-rule"></span><span class="section-side-note">BACA LEBIH LANJUT</span></div><h2 id="references-title">Landasan materi</h2><div class="reference-list"><a href="https://www.iso.org/standard/63500.html" target="_blank" rel="noreferrer"><span>01</span><span>ISO 9241-11:2018 · Usability: Definitions and concepts</span><span aria-hidden="true">↗</span></a><a href="https://www.iso.org/standard/77520.html" target="_blank" rel="noreferrer"><span>02</span><span>ISO 9241-210:2019 · Human-centred design for interactive systems</span><span aria-hidden="true">↗</span></a><a href="https://www.nngroup.com/books/usability-engineering/" target="_blank" rel="noreferrer"><span>03</span><span>Nielsen, J. (1993). <em>Usability Engineering.</em></span><span aria-hidden="true">↗</span></a><a href="https://www.nngroup.com/articles/usability-101-introduction-to-usability/" target="_blank" rel="noreferrer"><span>04</span><span>Nielsen Norman Group · Usability 101: Introduction to Usability</span><span aria-hidden="true">↗</span></a><a href="https://hci-studies.org/methods-and-measures/downloads/SUS_Brooke1996.pdf" target="_blank" rel="noreferrer"><span>05</span><span>Brooke, J. (1996). SUS: A quick and dirty usability scale.</span><span aria-hidden="true">↗</span></a></div><p class="reference-note">Konten ini merupakan ringkasan pembelajaran, bukan pengganti teks lengkap standar ISO atau publikasi aslinya.</p>
+    </section>
+
+<section class="intro-section" id="tentang" hidden>
+      <div class="section-kicker"><span>01</span> TENTANG KAMI</div>
+      <div class="intro-content"><h2>Kampus jadi lebih<br>berarti <span>bersama.</span></h2><div class="intro-aside"><p>IMKK adalah ruang kolaborasi untuk mengenali potensi, mencoba hal baru, dan saling menguatkan. Setiap suara punya tempat. Setiap ide punya kesempatan.</p><a class="text-link" href="#kontak">Hubungi komunitas <span aria-hidden="true">↗</span></a></div></div>
+      <div class="values-row"><article class="value-card"><span class="value-index">01 / TERHUBUNG</span><h3>Temukan lingkaranmu.</h3><p>Kenali teman lintas minat dan bangun koneksi yang terasa nyata.</p></article><article class="value-card"><span class="value-index">02 / BERTUMBUH</span><h3>Belajar sambil mencoba.</h3><p>Ruang aman untuk eksplorasi, bertanya, dan berkembang bersama.</p></article><article class="value-card"><span class="value-index">03 / BERDAMPAK</span><h3>Wujudkan ide baik.</h3><p>Ubah hal yang kamu pedulikan menjadi aksi dan karya nyata.</p></article></div>
+    </section>
+
+    <section class="activities-section" id="kegiatan"><div class="activity-head"><div class="section-kicker"><span>02</span> RUANG BERGERAK</div><h2>Belajar. Berkarya.<br><span>Berbagi.</span></h2></div><div class="activity-list"><a class="activity-item" href="#kontak"><span class="activity-number">01</span><span class="activity-title">Kelas & lokakarya</span><span class="activity-meta">Asah keterampilan, temukan perspektif baru</span><span class="activity-arrow" aria-hidden="true">↗</span></a><a class="activity-item" href="#kontak"><span class="activity-number">02</span><span class="activity-title">Proyek kolaborasi</span><span class="activity-meta">Kerjakan ide bersama teman lintas bidang</span><span class="activity-arrow" aria-hidden="true">↗</span></a><a class="activity-item" href="#kontak"><span class="activity-number">03</span><span class="activity-title">Aksi komunitas</span><span class="activity-meta">Bawa energi kampus untuk sekitar</span><span class="activity-arrow" aria-hidden="true">↗</span></a></div></section>
+
+    <section class="contact-section" id="kontak"><div class="contact-kicker">ADA IDE? KAMI MAU DENGAR.</div><div class="contact-row"><h2>Mulai dari<br><span>satu obrolan.</span></h2><a class="contact-button" href="#kegiatan">Jelajahi kegiatan <span aria-hidden="true">↗</span></a></div></section>
+<section class="contact-section summary-section" id="ringkasan" aria-labelledby="summary-title">
+    <div class="section-shell">
+        <div class="contact-kicker">RINGKASAN MATERI</div>
+        <div class="contact-row summary-heading">
+            <h2 id="summary-title">Apa yang sudah<br><span>dipelajari?</span></h2>
+            <p class="summary-lede">Enam konsep inti untuk memahami usability dan menerapkannya pada sistem interaktif.</p>
+        </div>
+        <ol class="summary-grid">
+            <li><a class="value-card summary-card" href="#definisi"><span class="value-index">01</span><h3>Usability</h3></a></li>
+            <li><a class="value-card summary-card" href="#pentingnya"><span class="value-index">02</span><h3>Importance</h3></a></li>
+            <li><a class="value-card summary-card" href="#atribut"><span class="value-index">03</span><h3>Nielsen's Attributes</h3></a></li>
+            <li><a class="value-card summary-card" href="#langkah"><span class="value-index">04</span><h3>Design Process</h3></a></li>
+            <li><a class="value-card summary-card" href="#pengukuran"><span class="value-index">05</span><h3>Evaluation</h3></a></li>
+            <li><a class="value-card summary-card" href="#siklus"><span class="value-index">06</span><h3>Lifecycle</h3></a></li>
+        </ol>
+        <p class="summary-conclusion">Usability bukan hanya tentang tampilan yang menarik, tetapi tentang bagaimana sebuah sistem membantu pengguna mencapai tujuan secara efektif, efisien, dan memuaskan.</p>
+    </div>
+</section>
+<section class="intro-section material-about" id="tentang-materi" aria-labelledby="about-material-title">
+    <div class="section-shell">
+        <div class="section-kicker">IMKK · TENTANG MATERI</div>
+        <div class="intro-grid">
+            <h2 id="about-material-title">Tentang<br><span>materi.</span></h2>
+            <div class="intro-copy">
+                <p>Website ini dirancang sebagai media pembelajaran interaktif untuk memahami konsep Interaksi Manusia dan Komputer, khususnya Usability Engineering.</p>
+                <p>Materi disusun bertahap mulai dari definisi dan pentingnya usability, atribut Nielsen, proses usability engineering, metode pengukuran, hingga usability engineering lifecycle.</p>
+                <p>Selain menyajikan materi, website ini menerapkan prinsip IMK secara langsung melalui navigasi, feedback, interaksi, hierarki visual, dan pengalaman pengguna.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<style>
+    #kegiatan, #kontak { display: none !important; }
+    .summary-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; padding:0; margin:24px 0 0; list-style:none; }
+    .summary-card { display:block; min-height:90px; text-decoration:none; }
+    .summary-lede { max-width:380px; color:#a8b6c9; line-height:1.75; }
+    .summary-conclusion { margin:20px 0 0; padding:18px 20px; border:1px solid rgba(138,164,196,.18); border-radius:14px; background:rgba(14,22,36,.55); color:#d8e3f0; line-height:1.75; }
+    .experience-flow { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:10px; }
+    .experience-example { margin-top:24px; padding:20px; border:1px solid rgba(138,164,196,.18); border-radius:14px; background:rgba(14,22,36,.55); }
+    .experience-example-title { margin-bottom:16px; color:#8bdcff; font-size:11px; letter-spacing:.12em; }
+    .experience-example-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; }
+    .experience-example-grid div { display:grid; gap:6px; }
+    .experience-example-grid span { color:#8f9fb4; font-size:11px; text-transform:uppercase; letter-spacing:.08em; }
+    .experience-example-grid strong { color:#e7eef8; font-size:13px; font-weight:500; line-height:1.5; }
+    @media(max-width:720px) { .summary-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media(max-width:720px) { .experience-example-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media(max-width:460px) { .summary-grid, .experience-example-grid { grid-template-columns:1fr; } }
+</style>
+<script>
+    (() => {
+        const summary = document.getElementById('ringkasan');
+        const glossary = document.getElementById('glossary');
+        if (summary && glossary) glossary.before(summary);
+        const experience = document.getElementById('experience');
+        const flow = experience && experience.querySelector('.experience-flow');
+        if (flow) {
+            flow.setAttribute('aria-label', 'Alur dari materi menjadi feedback');
+            flow.innerHTML = '<span>Materi</span><b aria-hidden="true">↓</b><span>Informasi</span><b aria-hidden="true">↓</b><span>Visual</span><b aria-hidden="true">↓</b><span>Interaksi</span><b aria-hidden="true">↓</b><span>Feedback</span>';
+        }
+        if (experience && !experience.querySelector('.experience-example')) {
+            const example = document.createElement('div');
+            example.className = 'experience-example';
+            example.setAttribute('aria-label', 'Contoh penerapan visibility of system status');
+            example.innerHTML = '<div class="experience-example-title">CONTOH · VISIBILITY OF SYSTEM STATUS</div><div class="experience-example-grid"><div><span>Materi</span><strong>Visibility of System Status</strong></div><div><span>Visual</span><strong>Indikator status</strong></div><div><span>Interaksi</span><strong>Pengguna menekan tombol</strong></div><div><span>Feedback</span><strong>“Memproses…” → “Berhasil”</strong></div></div>';
+            experience.append(example);
+        }
+    })();
+</script>
+</main>
+
+  <footer class="site-footer"><a class="footer-brand" href="#beranda">IMKK<span>.</span></a><span>Interaksi Manusia dan Komputer · Media pembelajaran interaktif untuk memahami usability dan human-computer interaction.</span><span>© 2026 IMKK</span></footer>
+  <script>
+    const menuButton = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    if (menuButton && navLinks) {
+      menuButton.addEventListener('click', () => {
+        const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+        menuButton.setAttribute('aria-expanded', String(!isOpen));
+        menuButton.setAttribute('aria-label', isOpen ? 'Buka menu' : 'Tutup menu');
+        navLinks.classList.toggle('is-open', !isOpen);
+      });
+      navLinks.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+        menuButton.setAttribute('aria-expanded', 'false');
+        menuButton.setAttribute('aria-label', 'Buka menu');
+        navLinks.classList.remove('is-open');
+      }));
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && menuButton.getAttribute('aria-expanded') === 'true') {
+          menuButton.setAttribute('aria-expanded', 'false');
+          menuButton.setAttribute('aria-label', 'Buka menu');
+          navLinks.classList.remove('is-open');
+          menuButton.focus();
+        }
+      });
+    }
+  </script>
+  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/presentation.js"></script>
+  <div class="presentation-intro" id="presentation-intro" role="status" aria-live="polite" hidden>
+    <button class="presentation-intro-close" type="button" data-presentation-intro-close aria-label="Tutup pengantar mode presentasi">×</button>
+    <p class="presentation-intro-label">MODE PRESENTASI</p>
+    <strong>Materi Usability Engineering</strong>
+    <span>← → berpindah materi · F fullscreen · A− / A+ ukuran teks</span>
+  </div>
+  <div class="presentation-toolbar" id="presentation-toolbar" role="toolbar" aria-label="Kontrol presentasi" hidden>
+    <div class="presentation-progress" aria-live="polite">
+      <strong id="presentation-count">01 / 08</strong>
+      <span id="presentation-title">Apa itu usability?</span>
+      <div class="presentation-progress-track" role="progressbar" aria-label="Progress presentasi" aria-valuemin="1" aria-valuemax="8" aria-valuenow="1"><span id="presentation-progress-fill"></span></div>
+    </div>
+    <div class="presentation-actions">
+      <button type="button" data-presentation-prev title="Materi sebelumnya" aria-label="Materi sebelumnya">← <span>Sebelumnya</span></button>
+      <button type="button" data-presentation-next title="Materi berikutnya" aria-label="Materi berikutnya"><span>Berikutnya</span> →</button>
+      <button type="button" data-presentation-font-down title="Perkecil teks" aria-label="Perkecil teks">A−</button>
+      <button type="button" data-presentation-font-reset title="Kembalikan ukuran teks ke 100%" aria-label="Reset ukuran teks">100%</button>
+      <button type="button" data-presentation-font-up title="Perbesar teks" aria-label="Perbesar teks">A+</button>
+      <button type="button" data-presentation-fullscreen title="Fullscreen" aria-label="Masuk ke fullscreen">⛶ <span>Fullscreen</span></button>
+      <button type="button" class="presentation-exit" data-presentation-exit title="Keluar presentasi" aria-label="Keluar presentasi">× <span>Keluar</span></button>
+    </div>
+  </div>
+</body>
+</html>
